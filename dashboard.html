@@ -5,10 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <style>
-      
-
       button {
         padding: 15px;
         margin: 10px;
@@ -26,7 +24,7 @@
       button:hover {
         background: rgba(0, 0, 0, 0.7);
       }
-      .modal-header{
+      .modal-header {
         color: black;
         font-size: 25px;
         font-weight: 900;
@@ -43,7 +41,6 @@
         display: none;
         align-items: center;
         justify-content: center;
-        
       }
       #modal-overlay #modal {
         max-width: 650px;
@@ -58,7 +55,7 @@
         background-size: cover;
         opacity: 100%;
       }
-      label{
+      label {
         color: black;
       }
 
@@ -70,39 +67,39 @@
   <body>
     <div class="main-container">
       <div class="dashboard">
-        
-    <div class="modals">
-      <button id="open-modal">Change Password</button>
+        <!--code for pop-up modal  -->
+        <div class="modals">
+          <button id="open-modal">Change Password</button>
 
-      <div id="modal-overlay">
-        <div id="modal">
-          <div class="modal-header">
-            <h2>Create New Password</h2>
-          </div>
+          <div id="modal-overlay">
+            <div id="modal">
+              <div class="modal-header">
+                <h2>Create New Password</h2>
+              </div>
 
-          <div class="modal-content">
-            <label for="oldPassword">Old Password</label>
+              <div class="modal-content">
+                <label for="oldPassword">Old Password</label>
 
-            <input type="password" id="oldPassword" />
-             <br>
+                <input type="password" id="oldPassword" />
+                <br />
 
-            <label for="newPassword">New Password</label>
-            <input type="password" id="newPassword" />
-            <span id="valid"></span>
-            <br />
-            <br />
-            <p id="match"></p>
-          </div>
+                <label for="newPassword">New Password</label>
+                <input type="password" id="newPassword" />
+                <span id="valid"></span>
+                <br />
+                <br />
+                <p id="match"></p>
+              </div>
 
-          <div class="modal-footer">
-            <button id="close-modal">Close</button>
-            <button id="changebutton">Change Password</button>
+              <div class="modal-footer">
+                <button id="close-modal">Close</button>
+                <button id="changebutton">Change Password</button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <button onclick="logout()">Log Out</button>
+        <button onclick="logout()">Log Out</button>
       </div>
     </div>
 
@@ -136,6 +133,7 @@
 
       modalWindowOverlay.addEventListener("click", hideModalWindowOnBlur);
 
+      // access all the input values
       let input_fields = document.querySelectorAll("input");
       let spans = document.querySelector("span");
 
@@ -144,30 +142,30 @@
       changePassword.addEventListener("click", check);
       let isnewPasswordValid = false;
       input_fields[1].addEventListener("input", valid_password);
+
+      //check old password is exist
       function check() {
         if (
           input_fields[0].value != "" &&
-          data.password == input_fields[0].value && isnewPasswordValid
+          data.password == input_fields[0].value &&
+          isnewPasswordValid
         ) {
-           
           document.getElementById("match").innerText =
             "Successfully Password Change  🙂";
-            document.getElementById("match").style.color = "white"
-            document.getElementById("match").style.fontSize= "20px"
-            document.getElementById("match").style.fontWeight = 900
-            data.password = input_fields[1].value;
-            localStorage.setItem("currentUser" ,JSON.stringify(data));
-        }
-        else{
-            document.getElementById("match").innerText =
+          document.getElementById("match").style.color = "white";
+          document.getElementById("match").style.fontSize = "20px";
+          document.getElementById("match").style.fontWeight = 900;
+          data.password = input_fields[1].value;
+          localStorage.setItem("currentUser", JSON.stringify(data));
+        } else {
+          document.getElementById("match").innerText =
             "Check Your Password or new Password is invalid  😞 ";
-            document.getElementById("match").style.color = "orange"
-            document.getElementById("match").style.fontSize= "20px"
-            document.getElementById("match").style.fontWeight = 900
-
+          document.getElementById("match").style.color = "orange";
+          document.getElementById("match").style.fontSize = "20px";
+          document.getElementById("match").style.fontWeight = 900;
         }
       }
-
+      //validation for new Password
       function valid_password() {
         let passFormat =
           /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,15}$/;
@@ -176,7 +174,7 @@
           spans.style.color = "green";
           spans.style.fontSize = "20px";
           fontSize.style.fontWeight = 900;
-          isnewPasswordValid = true
+          isnewPasswordValid = true;
         } else {
           spans.innerHTML = "Invalid 😞 ";
           spans.style.color = "red";
@@ -184,11 +182,11 @@
           fontSize.style.fontWeight = 900;
         }
       }
-
-      function logout(){
-        console.log("hello")
-         localStorage.setItem("currentUser" ,"null" );
-         window.location.href = "login.html"
+      // to logout your email id
+      function logout() {
+        console.log("hello");
+        localStorage.setItem("currentUser", "null");
+        window.location.href = "login.html";
       }
     </script>
   </body>

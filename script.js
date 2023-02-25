@@ -1,3 +1,5 @@
+
+//if currentuser is not null then direct to the dashboard page
 let data = JSON.parse(localStorage.getItem("currentUser"))
 if(data!=null){
    window.location.href = "dashboard.html"
@@ -22,7 +24,7 @@ signupBtn.addEventListener('click',addPersonIntoData)
 
 
 
-//validate
+// check for validate inputs
 
 function validateInputs(indNo){
     let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -36,7 +38,7 @@ function validateInputs(indNo){
         spans[indNo].style.color = "orange"
     }
 }
-
+// add the person's data into array and check all the validation + user doesnot exist already
 function addPersonIntoData(e){
     let allFieldValid = true;
     let sucessMsg = document.querySelector('#sucessfullyAdded')
@@ -47,14 +49,19 @@ function addPersonIntoData(e){
     }
     let isAlreadyExist = false
     let checkuser = JSON.parse(localStorage.getItem("user"))
+    if(JSON.parse(localStorage.getItem("user"))!=null){
     for (const t of checkuser) {
         if(t.email==inputs[1].value){
             isAlreadyExist = true
         }
     }
+}
     
     if(allFieldValid==true && isAlreadyExist==false){
+        console.log("hello");
+        if(JSON.parse(localStorage.getItem("user"))!=null){
         person = [...JSON.parse(localStorage.getItem("user"))];
+        }
         let obj = new Object();
         
         obj.name = inputs[0].value
@@ -74,6 +81,7 @@ function addPersonIntoData(e){
     }
 }
 
+//to direct in the signIn page
 function signinBtn(){
    window.location.href = "login.html"
 }

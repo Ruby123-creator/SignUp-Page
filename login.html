@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Login Page -->
     <div id="loginPage" >
         
         <form id="loginPageForm">
@@ -22,12 +24,15 @@
         </form>
     </div>
     <script>
-        let loginDiv = document.querySelector("#loginPage")
 
+        // access all the values
+let loginDiv = document.querySelector("#loginPage")
 let loginEmail = document.getElementById('loginEmail')
 let loginPass = document.getElementById("loginPass")
 let loginButton = document.getElementById("loginBtn")
 
+
+//check for login user and all the validation
 loginButton.addEventListener('click',loginCheckKaro)
 
 function loginCheckKaro(){
@@ -38,6 +43,8 @@ function loginCheckKaro(){
         if((t.email==loginEmail.value) && (t.password==loginPass.value)){
             isEmailandPass = true
             let token = ""
+
+            //to create token
             let capital_digit = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" 
              let small_digit = "abcdefghijklmnopqrstuvwxyz" 
              let number = "0123456789" 
@@ -64,6 +71,7 @@ function loginCheckKaro(){
         loginmsg.style.color = "red"
     }
 }
+//to direct SigunUp page
 function SignUpbtn(){
     window.location.href = "index.html"
 }
